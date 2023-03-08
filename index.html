@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang=”en-GB”>
+	<head>
+			<meta charset="utf-8">
+			<title>Page title</title>
+			<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js" defer></script>
+			<script src="./app.js" defer></script>
+      <link rel="stylesheet" href="./reset.css" type="text/css">
+			<link rel="stylesheet" href="./style.css" type="text/css">
+	</head>
+	<body>
+		<div id="app">
+			<div id="game-container">
+        <div class="stage" v-if="gameStage === 0">
+          <div class="game-controls">
+            <div class="stage-text">
+              <label for="list">Select grid size:</label>
+              <select id="list" v-model.number="totalCards">
+                <option value="3" selected>XS</option>
+                <option value="4">S</option>
+                <option value="5">M</option>
+                <option value="6">L</option>
+                <option value="7">XL</option>
+              </select>
+            </div>
+            <div class="button green" v-on:click="initiateGame">Continue</div>
+          </div>
+        </div>
+        <div class="stage" v-if="gameStage === 1">
+          <div class="game-grid" v-bind:style="gridTemplateStyle">
+            <span class="number-container" v-for="number in gridSize[0]*gridSize[1]"><span v-bind:class="['number']" v-if="number < maxNumber">{{number}}</span></span>
+          </div>
+          <div class="game-controls">
+            <div class="stage-text">Choose a number and press continue</div>
+            <div class="button green" v-on:click="gameStage++"><span>Continue</span></div>
+          </div>
+        </div>
+        <div class="stage" v-if="gameStage === 2">
+          <div class="game-grid" v-bind:style="gridTemplateStyle">
+            <span class="number-container" v-for="number in gridSize[0]*gridSize[1]"><span v-bind:class="['number']" v-if="number+1 < cards[currentCard].length+2">{{cards[currentCard][number-1]}}</span></span>
+          </div>
+          <div class="game-controls">
+            <div class="stage-text">Do you see your number?</div>
+            <div class="button green" v-on:click="numberSeen">Yes</div>
+            <div class="button red" v-if="currentCard+1 < totalCards" v-on:click="currentCard++">No</div>
+            <div class="button red" v-if="currentCard+1 === totalCards" v-on:click="gameStage++">No</div>
+          </div>
+        </div>
+        <div class="stage" v-if="gameStage === 3">
+          <div class="game-controls">
+            <div class="stage-text">Ready to be amazed?</div>
+            <div class="button green" v-on:click="gameStage++">Reveal</div>
+          </div>
+        </div>
+        <div class="stage" v-if="gameStage === 4">
+          <div class="game-grid" v-bind:style="gridTemplateStyle">
+            <span v-for="number in gridSize[0]*gridSize[1]" v-bind:class="['number-container', {reveal: checkNumber(number)}]"><span v-bind:class="['number']" v-if="number < maxNumber">{{number}}</span></span>
+          </div>
+          <div class="game-controls">
+            <div class="stage-text" v-if="foundNumber === 0">Hmm, you just pressed&#160;<span class="red-text">NO NO NO</span>&#160;, didn't you?</div>
+            <div class="button green" v-on:click="gameStage=0"><span>Restart</span></div>
+          </div>
+        </div>
+			</div>
+		</div>
+    <div id="footer-text">Powered by <a href="https://v2.vuejs.org">Vue 2</a>.</div>
+	</body>
+</html>

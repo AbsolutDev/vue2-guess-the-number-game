@@ -1,0 +1,123 @@
+* {
+  font-family: 'Arial';
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+select {
+  width: 5rem;
+  margin: 0.5rem;
+  font-size: 1.2rem;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#game-container {
+  height: 90vh;
+  width: 90vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: hsl(0, 0%, 90%);
+  border-radius: 5px;
+}
+
+.stage {
+  width: 100%;
+  height: 100%;
+  padding: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.game-grid {
+  display: grid;
+  gap: 3px;
+  padding: 5px;
+  background-color: hsl(0, 0%, 98%);
+  border-radius: 5px;
+}
+
+.number-container {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 3px;
+}
+
+.number-container.reveal {
+  background-color: hsl(120, 73%, 75%);
+}
+
+.number {
+  font-size: 1rem;
+}
+
+.game-controls {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-self: flex-end;
+}
+
+.stage-text {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.red-text {
+  color: hsl(0, 100%, 50%);
+}
+
+.button {
+  width: 6rem;
+  height: 2rem;
+  margin: .5rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid hsl(0, 0%, 0%);
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.green {
+  background-color: hsl(120, 73%, 75%);
+}
+
+.red {
+  background-color: hsl(0, 100%, 70%);
+}
+
+#footer-text {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding-bottom: 5px;
+  font-size: 0.6rem;
+  text-align: center;
+}
+
+#footer-text a{
+  text-decoration: none;
+}
